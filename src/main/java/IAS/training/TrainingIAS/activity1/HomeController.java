@@ -1,4 +1,4 @@
-package IAS.training.TrainingIAS.controller;
+package IAS.training.TrainingIAS.activity1;
 
 import org.springframework.web.bind.annotation.*;
 

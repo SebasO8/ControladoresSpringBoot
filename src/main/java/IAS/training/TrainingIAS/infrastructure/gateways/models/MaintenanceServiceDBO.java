@@ -1,6 +1,6 @@
-package IAS.training.TrainingIAS.activity2.repositories.models;
+package IAS.training.TrainingIAS.infrastructure.gateways.models;
 
-import IAS.training.TrainingIAS.activity2.domain.*;
+import IAS.training.TrainingIAS.core.domain.*;
 
 public class MaintenanceServiceDBO {
     private String id;

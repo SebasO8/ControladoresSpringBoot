@@ -1,6 +1,6 @@
-package IAS.training.TrainingIAS.activity2.controllers.models;
+package IAS.training.TrainingIAS.infrastructure.controllers.models;
 
-import IAS.training.TrainingIAS.activity2.domain.MaintenanceService;
+import IAS.training.TrainingIAS.core.domain.MaintenanceService;
 
 public class MaintenanceServiceDTO {
     private String id;

@@ -1,4 +1,4 @@
-package IAS.training.TrainingIAS.activity2.domain;
+package IAS.training.TrainingIAS.core.domain;
 
 import org.apache.commons.lang3.Validate;
 import org.joda.time.LocalDateTime;

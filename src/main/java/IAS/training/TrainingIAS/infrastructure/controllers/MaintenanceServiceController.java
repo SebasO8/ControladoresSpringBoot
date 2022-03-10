@@ -1,18 +1,27 @@
-package IAS.training.TrainingIAS.activity2.controllers;
+package IAS.training.TrainingIAS.infrastructure.controllers;
 
-import IAS.training.TrainingIAS.activity2.controllers.models.MaintenanceServiceDTO;
-import IAS.training.TrainingIAS.activity2.controllers.models.MaintenanceServiceInput;
-import IAS.training.TrainingIAS.activity2.domain.*;
+import IAS.training.TrainingIAS.core.gateways.MaintenanceServiceRepository;
+import IAS.training.TrainingIAS.infrastructure.controllers.models.MaintenanceServiceDTO;
+import IAS.training.TrainingIAS.infrastructure.controllers.models.MaintenanceServiceInput;
+import IAS.training.TrainingIAS.core.domain.*;
+import IAS.training.TrainingIAS.shared.domain.Limit;
+import IAS.training.TrainingIAS.shared.domain.PageQuery;
+import IAS.training.TrainingIAS.shared.domain.Skip;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
 public class MaintenanceServiceController {
+    private final MaintenanceServiceRepository maintenanceServiceRepository;
 
-    @RequestMapping(value= "/services/{id}",method = RequestMethod.GET)
+    public MaintenanceServiceController(MaintenanceServiceRepository maintenanceServiceRepository) {
+        this.maintenanceServiceRepository = maintenanceServiceRepository;
+    }
+
+    @RequestMapping(value= "/services/{id}", method = RequestMethod.GET)
     public MaintenanceServiceDTO getService(
             @PathVariable("id") String serviceId
     ){
@@ -29,7 +38,18 @@ public class MaintenanceServiceController {
             @RequestParam(name = "skip", defaultValue = "0") Integer skip,
             @RequestParam(name = "limit", defaultValue = "50") Integer limit
     ){
-        return List.of();
+        PageQuery pageQuery = new PageQuery(
+                new Skip(skip),
+                new Limit(limit)
+        );
+        List<MaintenanceService> services = maintenanceServiceRepository.query(pageQuery);
+
+        List<MaintenanceServiceDTO> result = new ArrayList<>();
+        for (MaintenanceService service : services){
+            MaintenanceServiceDTO dto = MaintenanceServiceDTO.fromDomain(service);
+            result.add(dto);
+        }
+        return  result;
     }
 
 

@@ -1,4 +1,4 @@
-package IAS.training.TrainingIAS.activity2.controllers.models;
+package IAS.training.TrainingIAS.infrastructure.controllers.models;
 
 public class MaintenanceServiceInput {
     private String startDate;
